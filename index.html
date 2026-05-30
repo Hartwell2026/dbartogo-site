@@ -227,6 +227,14 @@
                poster="assets/gallery/experience-6.jpeg" aria-label="D'BarToGo commercial">
           <source src="assets/video/hero.mp4" type="video/mp4" />
         </video>
+        <!-- sound toggle pinned to the video frame (stable on first paint, no jump) -->
+        <button class="hero__sound" id="heroSound" aria-pressed="false" aria-label="Turn sound on">
+          <span class="hero__sound-ico" aria-hidden="true">
+            <svg class="ico-off" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+            <svg class="ico-on" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+          </span>
+          <span class="hero__sound-txt">Tap for sound</span>
+        </button>
       </div>
 
       <div class="hero__bar reveal" data-reveal data-delay="0.16">
@@ -240,9 +248,6 @@
             <span>Rated 5.0 across 127+ celebrations</span>
           </div>
         </div>
-        <button class="hero__sound" id="heroSound" aria-pressed="false" aria-label="Turn sound on">
-          <span class="hero__sound-ico" aria-hidden="true">🔇</span><span class="hero__sound-txt">Tap for sound</span>
-        </button>
       </div>
     </section>
 

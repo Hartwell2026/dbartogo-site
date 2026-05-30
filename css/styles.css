@@ -255,27 +255,34 @@ main { position: relative; z-index: 1; }
 .stars { color: var(--gold); letter-spacing: 0.15em; }
 .hero__scroll { display: none; }
 
-/* tap-for-sound control (autoplay must start muted) — floats top-right ON the video, in view */
+/* tap-for-sound control — pinned inside the video frame's top-right (stable, no jump) */
 .hero__sound {
-  position: absolute; top: clamp(5.9rem, 9vh, 7.4rem); right: clamp(1rem, 3vw, 2.4rem); z-index: 6;
-  flex-shrink: 0;
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  background: rgba(13,11,9,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  border: 1px solid var(--gold); color: var(--gold-2);
-  padding: 0.72rem 1.2rem; cursor: pointer;
-  font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  transition: color .3s, background .3s, border-color .3s; box-shadow: 0 8px 24px -10px rgba(0,0,0,0.6);
+  position: absolute; top: clamp(0.9rem, 1.4vw, 1.4rem); right: clamp(0.9rem, 1.4vw, 1.4rem); z-index: 6;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(13,11,9,0.55); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  border: 1px solid rgba(246,189,114,0.55); color: #f6e4c4;
+  padding: 0.6rem 1rem; cursor: pointer; border-radius: 999px;
+  font-family: var(--sans); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.13em; text-transform: uppercase;
+  transition: color .3s, background .3s, border-color .3s, transform .3s;
+  box-shadow: 0 6px 20px -8px rgba(0,0,0,0.7);
 }
-.hero__sound:hover { color: #1b1404; background: linear-gradient(135deg, var(--gold-2), var(--gold-deep)); }
-.hero__sound.is-on { border-color: var(--gold); color: #1b1404; background: linear-gradient(135deg, var(--gold-2), var(--gold-deep)); animation: none; }
-.hero__sound-ico { font-size: 1rem; line-height: 1; }
-/* gold pulse draws the eye to turn sound on while muted */
-.hero__sound:not(.is-on) { animation: soundPulse 2.2s ease-in-out infinite; }
+.hero__sound:hover { transform: translateY(-1px); color: #1b1404; border-color: var(--gold); background: linear-gradient(135deg, var(--gold-2), var(--gold-deep)); }
+.hero__sound.is-on { color: #1b1404; border-color: var(--gold); background: linear-gradient(135deg, var(--gold-2), var(--gold) 55%, var(--gold-deep)); animation: none; }
+/* icon: clean monochrome SVGs, swap on state (no emoji, no red) */
+.hero__sound-ico { display: inline-flex; align-items: center; }
+.hero__sound-ico svg { display: block; }
+.hero__sound .ico-on { display: none; }
+.hero__sound.is-on .ico-off { display: none; }
+.hero__sound.is-on .ico-on { display: block; }
+/* soft gold halo draws the eye while muted (pure glow, no harsh ring) */
+.hero__sound:not(.is-on) { animation: soundPulse 2.6s ease-in-out infinite; }
 @keyframes soundPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(224,145,63,0.55), 0 8px 24px -10px rgba(0,0,0,0.6); }
-  50% { box-shadow: 0 0 0 12px rgba(224,145,63,0), 0 8px 24px -10px rgba(0,0,0,0.6); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(246,189,114,0.45), 0 6px 20px -8px rgba(0,0,0,0.7); }
+  50% { box-shadow: 0 0 14px 3px rgba(246,189,114,0.28), 0 6px 20px -8px rgba(0,0,0,0.7); }
 }
 @media (prefers-reduced-motion: reduce) { .hero__sound:not(.is-on) { animation: none; } }
+/* the squared-corners override shouldn't square this pill control */
+.hero__sound { border-radius: 999px !important; }
 
 /* ============================ TRUST ============================ */
 .trust { background: var(--bg-3); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.6rem var(--pad); }

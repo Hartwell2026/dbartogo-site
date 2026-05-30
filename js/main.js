@@ -435,16 +435,15 @@
   const soundBtn = document.getElementById("heroSound");
   if (heroVideo && soundBtn) {
     const txt = soundBtn.querySelector(".hero__sound-txt");
-    const ico = soundBtn.querySelector(".hero__sound-ico");
     let userPaused = false;
 
     const setLabel = () => {
       const on = !heroVideo.muted;
+      // icon (SVG) swap + styling handled in CSS via the .is-on class
       soundBtn.classList.toggle("is-on", on);
       soundBtn.setAttribute("aria-pressed", String(on));
       soundBtn.setAttribute("aria-label", on ? "Turn sound off" : "Turn sound on");
       if (txt) txt.textContent = on ? "Sound on" : "Tap for sound";
-      if (ico) ico.textContent = on ? "🔊" : "🔇";
     };
     setLabel();
 
