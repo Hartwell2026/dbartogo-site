@@ -595,6 +595,19 @@ main { position: relative; z-index: 1; }
 .footer { position: relative; z-index: 1; background: #0a0806; border-top: 1px solid var(--line-soft); padding: clamp(3rem, 6vw, 5rem) var(--pad) 0; }
 .footer__inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.1fr 2fr; gap: clamp(2rem, 4vw, 3.5rem); padding-bottom: 3rem; }
 .footer__tag { color: var(--ink-faint); font-size: 0.9rem; margin-top: 1rem; max-width: 340px; }
+/* social icon buttons */
+.footer__social { list-style: none; display: flex; gap: 0.6rem; margin-top: 1.4rem; padding: 0; }
+.footer__social a {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+  color: var(--ink-dim); border: 1px solid var(--line); background: rgba(255,255,255,0.02);
+  transition: color 0.3s, border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.footer__social a:hover {
+  color: #1b1404; border-color: var(--gold); transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--gold-2), var(--gold-deep));
+  box-shadow: 0 10px 24px -10px rgba(224,145,63,0.6);
+}
+.footer__social svg { display: block; }
 .footer__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.8rem; }
 .footer__col h4 { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
 .footer__col a, .footer__col p { display: block; color: var(--ink-dim); font-size: 0.9rem; margin-bottom: 0.6rem; transition: color 0.3s; }
@@ -605,16 +618,26 @@ main { position: relative; z-index: 1; }
 /* --- agency credit (Stonehenge Studio) --- */
 .footer__credit {
   max-width: var(--maxw); margin: 0 auto; border-top: 1px solid var(--line-soft);
-  padding: 1.4rem 0 2rem; text-align: center;
+  padding: 1.8rem 0 2.2rem; display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
 }
-.footer__credit p { font-size: 0.82rem; color: var(--ink-faint); letter-spacing: 0.03em; }
-.footer__credit-link {
-  color: var(--gold-2); font-weight: 600; letter-spacing: 0.04em; white-space: nowrap;
-  transition: color 0.3s, text-shadow 0.3s;
+.footer__credit-card {
+  display: inline-flex; align-items: center; gap: 0.85rem;
+  padding: 0.7rem 1.3rem; border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(224,145,63,0.07), rgba(255,255,255,0.015));
+  color: var(--ink); transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
-.footer__credit-link:hover { color: #fff3dd; text-shadow: 0 0 14px rgba(246,189,114,0.6); }
-.footer__credit-mark { color: var(--gold); font-size: 0.7em; letter-spacing: -0.1em; margin-right: 0.15em; }
-.footer__credit-sub { margin-top: 0.5rem; font-size: 0.78rem; }
+.footer__credit-card:hover {
+  border-color: var(--gold); transform: translateY(-2px);
+  box-shadow: 0 14px 34px -14px rgba(224,145,63,0.5);
+  background: linear-gradient(135deg, rgba(224,145,63,0.14), rgba(255,255,255,0.02));
+}
+.footer__credit-mark { color: var(--gold-2); flex-shrink: 0; transition: color 0.3s; }
+.footer__credit-card:hover .footer__credit-mark { color: var(--amber); }
+.footer__credit-text { display: flex; flex-direction: column; line-height: 1.25; text-align: left; }
+.footer__credit-line1 { font-size: 0.9rem; color: var(--ink-dim); letter-spacing: 0.02em; }
+.footer__credit-line1 strong { color: var(--gold-2); font-weight: 700; font-family: var(--serif); letter-spacing: 0.03em; }
+.footer__credit-line2 { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.15rem; }
+.footer__credit-sub { font-size: 0.8rem; color: var(--ink-faint); }
 .footer__credit-sub a { color: var(--gold-2); border-bottom: 1px solid rgba(224,145,63,0.4); padding-bottom: 1px; transition: color 0.3s, border-color 0.3s; }
 .footer__credit-sub a:hover { color: #fff3dd; border-color: var(--gold-2); }
 
