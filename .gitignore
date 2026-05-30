@@ -1,0 +1,11 @@
+# local dev artifacts
+*.log
+tunnel.log
+server.log
+.vercel
+.DS_Store
+node_modules
+# never commit secrets
+.retell_key
+.env
+.env.*
