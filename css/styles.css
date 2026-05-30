@@ -286,7 +286,7 @@ main { position: relative; z-index: 1; }
 /* ============================ ABOUT ============================ */
 .about { background: linear-gradient(180deg, var(--bg), var(--bg-2)); }
 .about__grid { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
-.about__copy p:not(.eyebrow):not(.lead) { color: var(--ink-faint); margin-top: 1.2rem; }
+.about__copy p:not(.eyebrow):not(.lead) { color: var(--ink-dim); margin-top: 1.2rem; text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
 .about__copy .lead { margin-bottom: 0.5rem; }
 .stat-row { display: flex; gap: 2.5rem; margin-top: 2.6rem; flex-wrap: wrap; }
 .stat { display: flex; flex-direction: column; }
@@ -348,7 +348,7 @@ main { position: relative; z-index: 1; }
 .pkg .btn { margin-top: 0.6rem; }
 
 /* ============================ MENU ============================ */
-.menu { background: var(--bg); position: relative; overflow: hidden; }
+.menu { background: var(--bg); position: relative; overflow: hidden; padding-bottom: clamp(3rem, 5vw, 4.5rem); }
 .menu__glow { position: absolute; right: -10%; top: 20%; width: 40vw; height: 40vw; background: radial-gradient(circle, rgba(47,111,99,0.16), transparent 65%); filter: blur(30px); }
 .menu__grid { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 3.5rem; position: relative; z-index: 1; }
 .menu__item { border-bottom: 1px solid var(--line-soft); padding-bottom: 1.1rem; }
@@ -356,8 +356,9 @@ main { position: relative; z-index: 1; }
 .menu__item h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; white-space: nowrap; }
 .menu__dots { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-3px); }
 .menu__type { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
-.menu__item p { color: var(--ink-faint); font-size: 0.9rem; margin-top: 0.3rem; }
-.menu__note { text-align: center; margin-top: 3rem; color: var(--ink-dim); font-family: var(--serif-alt); font-style: italic; font-size: 1.3rem; position: relative; z-index: 1; }
+.menu__item p { color: var(--ink-dim); font-size: 0.9rem; margin-top: 0.3rem; }
+.menu__note { text-align: center; margin-top: 2.4rem; color: var(--ink-dim); font-family: var(--serif-alt); font-style: italic; font-size: 1.3rem; position: relative; z-index: 1; }
+.menu__cta { text-align: center; margin-top: 1.6rem; position: relative; z-index: 1; }
 
 /* ============================ GALLERY ============================ */
 .gallery { background: linear-gradient(180deg, var(--bg), var(--bg-2)); }
@@ -528,18 +529,24 @@ main { position: relative; z-index: 1; }
 @keyframes legendPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(239,122,54,0.18); } 50% { box-shadow: 0 0 0 7px rgba(239,122,54,0.05); } }
 
 /* ============================ FAQ ============================ */
+/* dark scrim so the accordion stays legible over the busiest lifestyle photo */
+.faq::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(8,6,4,0.82) 0%, rgba(8,6,4,0.66) 55%, rgba(8,6,4,0.5) 100%);
+}
+.faq .section__head, .faq .accordion { position: relative; z-index: 1; }
 .accordion { max-width: 800px; margin: 0 auto; }
 .acc { border-bottom: 1px solid var(--line-soft); }
 .acc summary {
   cursor: pointer; list-style: none; padding: 1.4rem 2.5rem 1.4rem 0; position: relative;
   font-family: var(--serif); font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 500; color: var(--ink);
-  transition: color 0.3s;
+  transition: color 0.3s; text-shadow: 0 1px 12px rgba(0,0,0,0.8);
 }
 .acc summary::-webkit-details-marker { display: none; }
 .acc summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.6rem; font-family: var(--sans); font-weight: 300; transition: transform 0.3s; }
 .acc[open] summary::after { transform: translateY(-50%) rotate(45deg); }
 .acc summary:hover { color: var(--gold-2); }
-.acc p { color: var(--ink-faint); padding: 0 2.5rem 1.6rem 0; font-size: 0.98rem; max-width: 90%; }
+.acc p { color: var(--ink-dim); padding: 0 2.5rem 1.6rem 0; font-size: 0.98rem; max-width: 90%; text-shadow: 0 1px 10px rgba(0,0,0,0.75); }
 
 /* ============================ QUOTE / CTA ============================ */
 .quote-section, .quote#quote { background: linear-gradient(180deg, var(--bg), #100c07); }
