@@ -261,7 +261,7 @@ main { position: relative; z-index: 1; }
   display: inline-flex; align-items: center; gap: 0.5rem;
   background: rgba(13,11,9,0.55); backdrop-filter: blur(10px) saturate(1.2); -webkit-backdrop-filter: blur(10px) saturate(1.2);
   border: 1px solid rgba(246,189,114,0.55); color: #f6e4c4;
-  padding: 0.6rem 1rem; cursor: pointer; border-radius: 999px;
+  padding: 0.6rem 1rem; cursor: pointer;
   font-family: var(--sans); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.13em; text-transform: uppercase;
   transition: color .3s, background .3s, border-color .3s, transform .3s;
   box-shadow: 0 6px 20px -8px rgba(0,0,0,0.7);
@@ -281,8 +281,6 @@ main { position: relative; z-index: 1; }
   50% { box-shadow: 0 0 14px 3px rgba(246,189,114,0.28), 0 6px 20px -8px rgba(0,0,0,0.7); }
 }
 @media (prefers-reduced-motion: reduce) { .hero__sound:not(.is-on) { animation: none; } }
-/* the squared-corners override shouldn't square this pill control */
-.hero__sound { border-radius: 999px !important; }
 
 /* ============================ TRUST ============================ */
 .trust { background: var(--bg-3); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.6rem var(--pad); }
