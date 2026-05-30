@@ -255,19 +255,27 @@ main { position: relative; z-index: 1; }
 .stars { color: var(--gold); letter-spacing: 0.15em; }
 .hero__scroll { display: none; }
 
-/* tap-for-sound control (autoplay must start muted) — sits in the bar below the video */
+/* tap-for-sound control (autoplay must start muted) — floats top-right ON the video, in view */
 .hero__sound {
+  position: absolute; top: clamp(5.9rem, 9vh, 7.4rem); right: clamp(1rem, 3vw, 2.4rem); z-index: 6;
   flex-shrink: 0;
   display: inline-flex; align-items: center; gap: 0.55rem;
-  background: var(--bg-3);
-  border: 1px solid var(--line); color: var(--ink);
-  padding: 0.7rem 1.15rem; border-radius: 100px; cursor: pointer;
-  font-family: var(--sans); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-  transition: 0.3s; box-shadow: 0 8px 24px -10px rgba(0,0,0,0.6);
+  background: rgba(13,11,9,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--gold); color: var(--gold-2);
+  padding: 0.72rem 1.2rem; cursor: pointer;
+  font-family: var(--sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  transition: color .3s, background .3s, border-color .3s; box-shadow: 0 8px 24px -10px rgba(0,0,0,0.6);
 }
-.hero__sound:hover { border-color: var(--gold); color: var(--gold-2); background: rgba(13,11,9,0.66); }
-.hero__sound.is-on { border-color: var(--gold); color: #1b1404; background: linear-gradient(135deg, var(--gold-2), var(--gold-deep)); }
+.hero__sound:hover { color: #1b1404; background: linear-gradient(135deg, var(--gold-2), var(--gold-deep)); }
+.hero__sound.is-on { border-color: var(--gold); color: #1b1404; background: linear-gradient(135deg, var(--gold-2), var(--gold-deep)); animation: none; }
 .hero__sound-ico { font-size: 1rem; line-height: 1; }
+/* gold pulse draws the eye to turn sound on while muted */
+.hero__sound:not(.is-on) { animation: soundPulse 2.2s ease-in-out infinite; }
+@keyframes soundPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224,145,63,0.55), 0 8px 24px -10px rgba(0,0,0,0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(224,145,63,0), 0 8px 24px -10px rgba(0,0,0,0.6); }
+}
+@media (prefers-reduced-motion: reduce) { .hero__sound:not(.is-on) { animation: none; } }
 
 /* ============================ TRUST ============================ */
 .trust { background: var(--bg-3); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); padding: 1.6rem var(--pad); }
