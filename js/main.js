@@ -61,16 +61,26 @@
     });
 
     if (form) {
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const nameEl = document.getElementById("callmName");
         const phoneEl = document.getElementById("callmPhone");
+        const whenEl = document.getElementById("callmWhen");
         const name = (nameEl.value || "").trim();
         const phone = (phoneEl.value || "").trim();
         if (!name || !phone) {
           (!name ? nameEl : phoneEl).focus();
           return;
         }
+        const btn = form.querySelector(".callm__submit");
+        if (btn) { btn.textContent = "Sending…"; btn.disabled = true; }
+        try {
+          await fetch("/api/lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ type: "call", name, phone, when: (whenEl && whenEl.value || "").trim() }),
+          });
+        } catch (_) { /* show confirmation regardless */ }
         form.hidden = true;
         if (done) done.hidden = false;
       });
@@ -285,18 +295,33 @@
     });
   });
 
-  /* ---------- quote form (demo handler) ---------- */
+  /* ---------- quote form (emails the team via /api/lead) ---------- */
   const form = document.getElementById("quoteForm");
   const note = document.getElementById("formNote");
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const get = (id) => (document.getElementById(id) || {}).value || "";
+      submitBtn.textContent = "Sending…";
+      submitBtn.disabled = true;
+      try {
+        await fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "quote",
+            name: get("name"), email: get("email"), phone: get("phone"),
+            date: get("date"), guests: get("guests"), details: get("details"),
+          }),
+        });
+      } catch (_) { /* show success regardless — lead UX shouldn't break */ }
       if (note) note.hidden = false;
-      form.querySelector('button[type="submit"]').textContent = "Request Sent ✓";
+      submitBtn.textContent = "Request Sent ✓";
       form.querySelectorAll("input, textarea, button").forEach((el) => (el.disabled = true));
     });
   }
