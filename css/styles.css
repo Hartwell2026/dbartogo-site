@@ -572,7 +572,7 @@ main { position: relative; z-index: 1; }
 .quote__formnote { text-align: center; color: var(--gold-2); font-family: var(--serif-alt); font-style: italic; font-size: 1.15rem; }
 
 /* ============================ FOOTER ============================ */
-.footer { background: #0a0806; border-top: 1px solid var(--line-soft); padding: clamp(3rem, 6vw, 5rem) var(--pad) 0; }
+.footer { position: relative; z-index: 1; background: #0a0806; border-top: 1px solid var(--line-soft); padding: clamp(3rem, 6vw, 5rem) var(--pad) 0; }
 .footer__inner { max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1.1fr 2fr; gap: clamp(2rem, 4vw, 3.5rem); padding-bottom: 3rem; }
 .footer__tag { color: var(--ink-faint); font-size: 0.9rem; margin-top: 1rem; max-width: 340px; }
 .footer__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.8rem; }
